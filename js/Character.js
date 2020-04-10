@@ -1,0 +1,56 @@
+function Character(info) {
+    this.mainElem = document.createElement('div');
+    this.mainElem.classList.add('character');
+    this.mainElem.innerHTML = ''
+        + '<div class="character-face-con character-head">'
+            + '<div class="character-face character-head-face face-front"></div>'
+            + '<div class="character-face character-head-face face-back"></div>'
+        + '</div>'
+        + '<div class="character-face-con character-torso">'
+            + '<div class="character-face character-torso-face face-front"></div>'
+            + '<div class="character-face character-torso-face face-back"></div>'
+        + '</div>'
+        + '<div class="character-face-con character-arm character-arm-right">'
+            + '<div class="character-face character-arm-face face-front"></div>'
+            + '<div class="character-face character-arm-face face-back"></div>'
+        + '</div>'
+        + '<div class="character-face-con character-arm character-arm-left">'
+            + '<div class="character-face character-arm-face face-front"></div>'
+            + '<div class="character-face character-arm-face face-back"></div>'
+        + '</div>'
+        + '<div class="character-face-con character-leg character-leg-right">'
+            + '<div class="character-face character-leg-face face-front"></div>'
+            + '<div class="character-face character-leg-face face-back"></div>'
+        + '</div>'
+        + '<div class="character-face-con character-leg character-leg-left">'
+            + '<div class="character-face character-leg-face face-front"></div>'
+            + '<div class="character-face character-leg-face face-back"></div>'
+        + '</div>';
+
+    document.querySelector('.stage').appendChild(this.mainElem);
+
+    this.mainElem.style.left = info.xPos + '%';
+    // 스크롤 중인지 아닌지 확인
+    this.scrollState = false;
+    this.init();
+}
+
+Character.prototype = {
+    constructor: Character, // 재정의
+    init: function() {
+        const self = this; // this.mainElem을 사용하기 위해 변수 새로 지정 (function안에서는 this사용 X)
+
+        window.addEventListener('scroll', function() { // scroll이 움직이면 실행되는 이벤트
+            clearTimeout(self.scrollState); // setTimeout을 취소시킴, self.scrollState에 값이 반복해서 들어오는걸 한번만 실행시켜준다
+            
+            if(!self.scrollState) { // setTimeout에 의해 숫자가 들어오면 실행X
+                self.mainElem.classList.add('running');
+            }
+            
+            self.scrollState = setTimeout(function() { // setTimeout : 숫자를 반환, 0/5초뒤 실행 
+                self.scrollState = false;
+                self.mainElem.classList.remove('running');
+            }, 500); // 0.5초 뒤에 실행되려고 하지만 clearTimeout에 의해 실행되지 못함 => 스크롤이 끊나야 실행!
+        });
+    }
+};

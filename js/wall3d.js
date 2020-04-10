@@ -26,6 +26,12 @@
     });
 
     window.addEventListener('resize', resizeHandler); // 창사이즈 변경 시 이벤트 호출
+    stageElem.addEventListener('click', function(e) { // 클릭 했을 시 ilbuni 생성이벤트 호출
+        new Character({
+            xPos: (e.clientX / window.innerWidth * 100) // 클릭한 위치(%)
+        }); // Character.js 호출
+    });
+
     resizeHandler(); // 초기 스크롤 갱신
 
 })();
