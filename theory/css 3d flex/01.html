@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <style>
+    .world {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60vw; /* 창크기 가로 100vw 기준 (%와 비슷)*/
+      height: 60vh;
+      background: #fff000;
+      perspective: 500px; /* 원근감(3d) 공간 생성 : 숫자가 작을수록 극적으로 보임 */
+		}
+		.card {
+			display: flex; /* text center를 위해  */
+			align-items: center; /* Y축 center */
+			justify-content: center; /* X축 center */
+			width: 100px;
+			height: 150px;
+			border-radius: 0.5em; /* 모서리 둥근정도, em : font-size에 따라 상대적인 비율  */
+			font-size: 1.5rem; /* rem : html의 font-size에 따라 상대적인 비율  */
+			background: red;
+			transform: rotateY(45deg); /* y축기준 45도 회전 */
+			/* transform: perspective(500px) rotateY(45deg); 모든 카드에 같은 원근감(3d) 적용 */
+		}
+    </style>
+</head>
+<body>
+    <div class="world">
+		<div class="card">A</div>
+		<div class="card">B</div>
+		<div class="card">C</div>
+    </div>
+</body>
+</html>

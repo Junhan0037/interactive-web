@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Interactive Web</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<style>
+		.stage {
+			display: flex; /* 가운데 정렬 */
+			align-items: center; /* 가운데 정렬 */
+			justify-content: center; /* 가운데 정렬 */
+			width: 100vw; /* 화면에 꽉차게 */
+			height: 100vh; /* 화면에 꽉차게 */
+			background: #333;
+		}
+		.door {
+			position: relative;  /* 문정면, 이미지, 문뒷면을 겹치게 구현하려면 absolute가 되야하므로 부모는 relative로 설정 */
+			width: 100px;
+			height: 150px;
+		}
+		.door-back {
+			overflow: hidden; /* 문뒤쪽의 ilbuni 안보이게 설정 */
+			position: absolute; /* 문정면, 이미지, 문뒷면을 겹치게 하기위해 absolute로 위치 설정 */
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background: black;
+		}
+		.ilbuni {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100px;
+			height: 100px;
+			background-repeat: no-repeat;
+			background-position: 50% 100%; /* 이미지를 넣을 위치설정 (x축, y축) */
+			background-size: contain;
+			transform: translate3d(100%, 0, 0); /* x, y, z축 (하드웨어 가속사용), ilbuni의 크기를 100%로 잡는다 (오른쪽으로 ilbuni 크기만큼 이동)*/
+			transition: 0.5s 0.5s; /* 0.5초 재생되는데 0.5초 있다가 시작하도록 설정 */
+		}
+		.door:nth-child(1) .ilbuni { background-image: url(images/ilbuni_0.png); }
+		.door:nth-child(2) .ilbuni { background-image: url(images/ilbuni_1.png); }
+		.door:nth-child(3) .ilbuni { background-image: url(images/ilbuni_2.png); }
+		.door-body {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			transition: 0.5s;
+			transform-origin: 0%;
+			cursor: pointer; /* 마우스를 올리면 클릭모양 */
+		}
+		.door:nth-child(1) .door-body { background: rgba(255, 0, 0, 0.7); }
+		.door:nth-child(2) .door-body { background: rgba(0, 255, 0, 0.7); }
+		.door:nth-child(3) .door-body { background: rgba(0, 0, 255, 0.7); }
+		.door-opened .door-body {
+			transform: perspective(800px) rotateY(-110deg); /* 회전체 자체에 perspective를 설정하면 모두 같은 시야에서 보는듯한 변화를 준다 */
+		}
+		.door-opened .ilbuni {
+			transform: translate3d(0, 0, 0); /* 원래위치로 이동 */
+		}
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<div class="door">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+		<div class="door">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+		<div class="door">
+			<div class="door-back">
+				<div class="ilbuni"></div>
+			</div>
+			<div class="door-body"></div>
+		</div>
+	</div>
+
+	<script>
+		(function() {
+			const stageElem = document.querySelector('.stage');
+			// 현재 활성화된 아이템을 저장
+			let currentItem;
+
+			// 활성화
+			function activate(elem) {
+				elem.classList.add('door-opened');
+				currentItem = elem; /* 클릭했던 걸 저장 */
+			}
+
+			// 비활성화
+			function inactivate(elem) {
+				elem.classList.remove('door-opened');
+			}
+
+			function doorHandler(e) {
+				const targetElem = e.target;
+
+				if (currentItem) { // door-opened 클래스를 가진 태그가 있다면 실행
+					inactivate(currentItem);
+				}
+
+				if (targetElem.classList.contains('door-body')) {
+					activate(targetElem.parentNode);
+				}
+			}
+
+			stageElem.addEventListener('click', doorHandler); // 이벤트 위임
+
+			activate( document.querySelector('.door:nth-child(2)') ); // 2번째 문 열어두기
+		})();
+	</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .stage {
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            height: 75vw;
+            background: #fff000;
+        }
+        @keyframes moving {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(90vw);
+            }
+        }
+        .ilbuni {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: contain; /* 이미지가 틀에 온전하게 꽉참 */
+            animation: moving infinite alternate;
+        }
+        .ilbuni.a {
+            left: 5%;
+            bottom: 5%;
+            background-image: url('images/ilbuni_0.png');
+            animation-duration: 2s;
+        }
+        .ilbuni.b {
+            left: 10%;
+            bottom: 3%;
+            background-image: url('images/ilbuni_1.png');
+            animation-duration: 3s;
+        }
+        .ilbuni.c {
+            left: 7%;
+            bottom: 10%;
+            background-image: url('images/ilbuni_2.png');
+            animation-duration: 4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <div class="ilbuni a"></div>
+        <div class="ilbuni b"></div>
+        <div class="ilbuni c"></div>
+    </div>
+
+    <script>
+        (function () {
+            
+            const ilbuniGroup = document.querySelectorAll('.ilbuni');
+            const stage = document.querySelector('.stage');
+
+            function clickHandler() {
+                //stage.removeChild(this); // 부모클래스(stage)에서 자식클래스(ilbuni)를 없앤다
+                this.parentNode.removeChild(this); // this.parentNode : 부모클래스
+            }
+
+            for (let i = 0; i < ilbuniGroup.length; i++) {
+                ilbuniGroup[i].addEventListener('click', clickHandler);
+            }
+
+        }) ();
+    </script>
+</body>
+</html>

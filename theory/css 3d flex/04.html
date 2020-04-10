@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web CSS Flex</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row; /* flex방향축, row가 기본값, 기존의 row와 column의 방향과 반대 */
+            justify-content: flex-start; /* 설정한 축을 기준으로 정렬 flex-end, space-between, space-around, center*/
+            align-items: stretch; /* 설정한 축을 기준으로 수직방향을 정렬 flex-end, center*/
+            height: 80vh;
+            background: gray;
+        }
+        .item {
+            flex-grow: 1; /* 컨텐츠 폭을 제외한 여백의 비율 */
+            flex-basis: auto; /* 컨텐츠가 차지하는 영역 설정, 0을 입력해서 flex-grow에 컨텐츠 폭을 포함하여 비율을 설정할 수 있다 */
+            flex: 1; /* flex-basis가 자동으로 0으로 설정하고 비율 적용, 자주 사용 */
+            border: 3px solid black;
+            font-size: 3rem;
+            background: white;
+        }
+        /* .item:nth-child(1) { flex-grow: 1;}
+        .item:nth-child(2) { flex-grow: 5;}
+        .item:nth-child(3) { flex-grow: 2;}
+        .item:nth-child(4) { flex-grow: 3;}
+        .item:nth-child(5) { flex-grow: 4;} */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">AAA</div>
+        <div class="item">B</div>
+        <div class="item">CCCCC</div>
+        <div class="item">DDD</div>
+        <div class="item">E</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+/* reset */
+body {
+    height: 500vw;
+    font-family: 'Apple SD Gothic Neo', 'Roboto', 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
+    -webkit-overflow-scrolling: touch;
+    color: #555;
+    background: #fff000;
+    transition: background .5s;
+}
+body[data-char='ragirl'] {
+    background: #ff7200;
+}
+.world {
+    position: fixed; /* 스크롤이 내려져도 창고정 */
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px; /* 3D공간생성 */
+}
+.stage { /* house, ilbuni를 포함한 공간역할 */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d; /* 자식까지 3D효과 적용 */
+}
+.house {
+    width: 100vw;
+    height: 100vh;
+    transform: translateZ(-490vw);
+    transform-style: preserve-3d; /* 자식까지 3D효과 적용 */
+}
+.wall {
+    position: absolute; /* 겹치기 */
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+}
+.wall-left {
+    width: 1000vw; /* 길게 늘림 */
+    background: #f8f8f8;
+    transform: rotateY(90deg) translateZ(-500vw);; /* 회전후 이동*/
+}
+.wall-right {
+    width: 1000vw; /* 길게 늘림 */
+    background: #f8f8f8;
+    transform: rotateY(90deg) translateZ(-400vw); /* 회전후 이동*/
+}
+.wall-front-a {transform: translateZ(300vw);}
+.wall-front-b {transform: translateZ(50vw);}
+.wall-front-c {transform: translateZ(-200vw);}
+.wall-front-d {transform: translateZ(-500vw);}
+.wall-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.wall-title {
+    font-size: 5rem;
+}
+.progress-bar-con {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 5px;
+    background: #555;
+}
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: #00a8ff;
+}

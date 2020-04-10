@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <style>
+        body {
+            background: #222;
+        }
+        @keyframes spaceship-ani {
+            to { /* from : 0%, to : 100% */
+                background-position: -2550px 0px; /* 마지막 이미지가 (-)쪽으로 움직여야 하기 때문에 */
+            }
+        }
+        .spaceship {
+            width: 150px; /* 고해상도를 위해 300px이지만 절반으로 줄여서 표현 */
+            height: 150px;
+            background: url('images/sprite_spaceship.png') no-repeat 0 0 / auto 150px;
+            /* background: url('images/sprite_spaceship.png') no-repeat 0 0 / cover; */
+            /* background 사이즈도 절반으로 줄여주기 위해 width, height 중 계산이 쉬운것을 표현하고 나머지는 auto해서 나눠준다(cover도 가능) */
+            animation: spaceship-ani 1s infinite steps(17); /* infinite : 무한반복,  5100/300 = 17단계로 나눠서 표현*/
+        }
+    </style>
+</head>
+<body>
+    <div class="spaceship"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <script>
+        //window.addEventListener('load', function() { // script를 head안에 쓸때는 body가 로딩된 후 jaascript가 실행되게끔 해야한다
+        window.addEventListener('DOMContentLoaded', function() { // DOMContentLoaded는 웹페이지 로딩을 끝까지 기다리지 않고 바로 적용
+            const ilbuni = document.querySelector('.ilbuni.c');
+
+            function clickIlbuniHandler() {
+                ilbuni.classList.toggle('special');
+            }
+
+            ilbuni.addEventListener('click', clickIlbuniHandler);
+        });
+    </script>
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .characters {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #fff000;
+        }
+        .ilbuni {
+            width: 100px;
+            cursor: pointer;
+        }
+        .characters .ilbuni {
+            display: inline-block;
+        }
+        .special {
+            border: 10px dashed red;
+        }
+    </style>
+</head>
+<body>
+    <div class="characters">
+        <div class="ilbuni a">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </div>
+        <div class="ilbuni b">
+            <img src="images/ilbuni_1.png" alt="일분이">
+        </div>
+        <div class="ilbuni c">
+            <img src="images/ilbuni_2.png" alt="일분이">
+        </div>
+        <div class="ilbuni d">
+            <img src="images/ilbuni_3.png" alt="일분이">
+        </div>
+    </div>
+    <script>
+        // 전역변수 사용을 막기위해 function()과 ()로 묶어서 호출
+        (function() {
+            const ilbuni = document.querySelector('.ilbuni.c');
+
+            function clickIlbuniHandler(e) {
+                ilbuni.classList.toggle('special');
+                console.log(this);
+                console.log(e.currentTarget);
+                console.log(e.target);
+            }
+
+            ilbuni.addEventListener('click', clickIlbuniHandler);
+        }) ();
+    </script>
+</body>
+</html>

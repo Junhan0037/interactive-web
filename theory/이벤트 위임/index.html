@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="stage">
+        <div class="ilbuni a"></div>
+        <div class="ilbuni b"></div>
+        <div class="ilbuni c"></div>
+    </div>
+
+    <script>
+    (function() {
+        // 이벤트 위임 (메모리 절약)
+        const stage = document.querySelector('.stage');
+
+        function clickHandler(e) {
+            if (e.target.classList.contains('ilbuni')) { // e.target이 ilbuni일 경우에만 삭제
+                stage.removeChild(e.target); // e.target은 this와 다르게 정확히 클릭한 것을 불러온다 (this는 stage를 잡는다)
+            }
+        }
+
+        stage.addEventListener('click', clickHandler);
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web 인터넷 익스플로러 용</title>
+    <style>
+        .world {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60vw;
+            height: 60vh;
+            background: #fff000;
+            perspective: 500px;
+        }
+        .card-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 150px;
+            margin: -75px 0 0 -50px;
+            border-radius: 0.5em;
+            font-size: 1.5rem;
+            -webkit-backface-visibility: hidden; /* 사파리 브라우저에서 backface-visibility: hidden; 적용을 위해 -webkit 설정 */
+            -moz-backface-visibility: hidden; /* 모질라 브라우저를 위해 */
+            -o-backface-visibility: hidden; /* 오페라 브라우저를 위해 */
+            backface-visibility: hidden; /* 표준속성은 마지막에 써준다 */
+            transition: 1s;
+        }
+        .card-side-front {
+            z-index: 1;
+            background: white;
+        }
+        .card-side-back {
+            background: red;
+            transform: rotateY(180deg);
+        }
+        .world:hover .card-side-front {
+            transform: rotateY(180deg);
+        }
+        .world:hover .card-side-back {
+            transform: rotateY(360deg); /* 기준(0도)는 앞면 */
+        }
+    </style>
+</head>
+<body>
+    <div class="world"> <!--인터넷 익스플로러에서 transform-style: preserve-3d; 적용이 안되기 때문에 바로 자식이 오게 만든다-->
+        <div class="card-side card-side-front">F</div>
+        <div class="card-side card-side-back">B</div>
+    </div>
+</body>
+</html>
