@@ -1,5 +1,5 @@
 # interactive-web
-반응형 웹
+반응형 웹 (html + css + javascript)
 
 ## Features
 
