@@ -14,4 +14,4 @@
 
 <img src="/images/capture1.PNG" width="450px" height="300px" title="캡처" alt="capture1"></img><br/>
 <img src="/images/capture2.PNG" width="450px" height="300px" title="캡처" alt="capture2"></img><br/>
-<img src="/images/capture2.PNG" width="450px" height="300px" title="캡처" alt="capture3"></img>
+<img src="/images/capture3.PNG" width="450px" height="300px" title="캡처" alt="capture3"></img>
