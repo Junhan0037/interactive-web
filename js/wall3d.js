@@ -3,6 +3,7 @@
     const stageElem = document.querySelector('.stage')
     const houseElem = document.querySelector('.house');
     const barElem = document.querySelector('.progress-bar');
+    const selectCharacterElem = document.querySelector('.select-character');
     const mousePos = {x:0, y:0};
     let maxScrollValue; // 스크롤
 
@@ -28,8 +29,14 @@
     window.addEventListener('resize', resizeHandler); // 창사이즈 변경 시 이벤트 호출
     stageElem.addEventListener('click', function(e) { // 클릭 했을 시 ilbuni 생성이벤트 호출
         new Character({
-            xPos: (e.clientX / window.innerWidth * 100) // 클릭한 위치(%)
+            xPos: (e.clientX / window.innerWidth * 100), // 클릭한 위치(%)
+            speed: Math.random() * 0.5 + 0.2 // 랜덤값
         }); // Character.js 호출
+    });
+
+    selectCharacterElem.addEventListener('click', function(e) { // 이벤트 위임
+        const value = e.target.getAttribute('data-char');
+        document.body.setAttribute('data-char', value);
     });
 
     resizeHandler(); // 초기 스크롤 갱신
